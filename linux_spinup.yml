@@ -1,0 +1,44 @@
+---
+- name: Spin up linux host in ec2
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    ec2_region: us-west-1
+    count: 1
+    image: ami-16172676
+    type: t2.medium
+    # security and server_group tag are the same name
+    security_group: amq
+    server: amq
+    group: "{{ security_group }}"
+
+  tasks:
+  - name: Launch an AMQ ec2 instance!
+    ec2:
+      keypair: bcoursen
+      group: "{{ server }}"
+      image: "ami-66eec506"
+      type: "{{ type }}"
+      region: "{{ ec2_region }}"
+      instance_tags:
+          Name: "brian"
+          server: "amq"
+      count: "{{ count }}"
+      wait: true
+
+  - name: Launch a Fuse ec2 instance!
+    ec2:
+      keypair: bcoursen
+      group: "{{ server }}"
+      image: "ami-9bb889fb"
+      type: "{{ type }}"
+      region: "{{ ec2_region }}"
+      instance_tags:
+          Name: "brian"
+          server: "fuse"
+      count: "{{ count }}"
+      wait: true
+
+  - name: Pause for instance to be ready
+    pause: minutes=1
