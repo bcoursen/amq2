@@ -1,12 +1,12 @@
 ---
 - hosts: all
+  roles:
+    - amq
 
   tasks:
   - name: debug
     debug:
       var: install_broker
-
-  - include: amq.yml
 
 # - name: debug
 #   debug:
