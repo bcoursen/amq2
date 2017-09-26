@@ -24,6 +24,7 @@
       instance_tags:
           Name: "brian"
           server: "amq"
+          group: "qbr"
       count: "{{ count }}"
       wait: true
 
@@ -37,6 +38,7 @@
       instance_tags:
           Name: "brian"
           server: "fuse"
+          group: "qbr"
       count: "{{ count }}"
       wait: true
 
