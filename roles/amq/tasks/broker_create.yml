@@ -20,7 +20,7 @@
     owner: "{{ jboss_amq_user }}"
     group: "{{ jboss_amq_user }}"
 
-- name: Start AMQ
-  command: /var/opt/amq-broker/default/bin/artemis run
-  async: 30
-  poll: 0
+# - name: Start AMQ
+#   command: /var/opt/amq-broker/default/bin/artemis run
+#   async: 30
+#   poll: 0
